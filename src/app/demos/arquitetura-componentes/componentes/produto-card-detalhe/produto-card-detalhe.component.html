@@ -1,0 +1,40 @@
+<div style="padding-bottom: 30px;">
+    <div class="card h-100">
+        <div style="align-content:center;">
+            <img src="/assets/{{ produto.imagem }}" height="164px" width="253px" alt=""> 
+            <a class="align-top h3" (click)="emitirEvento()" href="javascript:void(0)">
+                <i [ngClass]="produto.ativo ? 'fa fa-toggle-on text-success' : 'fa fa-toggle-off text-muted'"></i>
+            </a>
+        </div>
+
+        <h4 class="card-title">{{ produto.nome | titlecase }}</h4>
+
+        <div [ngSwitch]="produto.ativo">
+            <p *ngSwitchCase="true">Em estoque</p>
+            <p *ngSwitchCase="false">Fora de estoque</p>
+        </div>
+
+        <div *ngIf="!produto.ativo" class="card-body">
+            <div>
+                <h2>
+                    Avise-me quando chegar!
+                    <ng-content></ng-content>
+                </h2>                
+            </div>
+        </div>
+
+        <div *ngIf="produto.ativo" class="card-body">
+            <div>
+                <h2>{{ produto.valor | currency: 'BRL': 'symbol': '1.2-2': 'pt' }}</h2>
+            </div>
+        </div>
+
+        <div class="card-footer">
+            <a class="btn" [ngClass]="produto.ativo ? 'btn-danger' : 'btn-success'" (click)="emitirEvento()" href="javascript:void(0)" >
+                {{produto.ativo ? 'Desativar' : 'Ativar'}}
+            </a>
+            &nbsp;
+            <a [routerLink]="['editar/', produto.id]" class="btn btn-primary">Editar</a>
+        </div>
+    </div>
+</div>

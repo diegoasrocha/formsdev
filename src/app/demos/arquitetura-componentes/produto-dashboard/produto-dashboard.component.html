@@ -1,0 +1,16 @@
+ <div class="container main-container">    
+    <h1 #teste>Lista Produtos</h1>
+
+    <app-produto-count [produtos]="produtos"></app-produto-count>
+
+    <div class="row text-center">
+
+        <app-produto-card-detalhe class="col-md-4" 
+            *ngFor="let prod of produtos" 
+            [produto]="prod" 
+            (status)="mudarStatus($event)" >
+            <span *ngIf="prod.id == 3" ><br>Ou vá em uma de nossas lojas</span>
+        </app-produto-card-detalhe>
+    </div>
+     
+</div>
