@@ -17,6 +17,7 @@ export class CadastroComponent implements OnInit, AfterViewInit {
 
   cadastroForm: FormGroup;
   usuario: Usuario;
+  usuarioStr: string;
 
   validationMessages: ValidationMessages;
   genericValidator: GenericValidator;
@@ -25,6 +26,8 @@ export class CadastroComponent implements OnInit, AfterViewInit {
   mudancasNaoSalvas: boolean;
 
   constructor(private fb: FormBuilder) {
+    this.usuarioStr = ""; 
+
     this.validationMessages = {
       nome: {
         required: "O nome é requerido!",
@@ -83,10 +86,15 @@ export class CadastroComponent implements OnInit, AfterViewInit {
       
       this.mudancasNaoSalvas = false;
 
-      console.log("cadastroForm:", this.usuario);
+      // console.log("cadastroForm:", this.usuario);
+      this.usuarioStr = JSON.stringify(this.usuario, undefined, 2);
     } else {
       console.log("cadastroForm:", "Não submetido!");
     }
+  }
+
+  limpar(){
+    this.cadastroForm.reset();
   }
 
   validarCampo(campo: string): boolean {
