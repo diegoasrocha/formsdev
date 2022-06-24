@@ -1,3 +1,5 @@
+import { Observable } from 'rxjs';
+import { User, UserService } from './../../services/user.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -6,8 +8,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MenuComponent implements OnInit {
   navs: Nav[];
+  user: User;
 
-  constructor() {
+  constructor(private userService: UserService) {
     this.navs = [];
    }
 
@@ -16,6 +19,18 @@ export class MenuComponent implements OnInit {
     this.navs.push({ link: '/sobre', name: 'Sobre', exact: true });
     this.navs.push({ link: '/produtos', name: 'Produtos', exact: false });
     this.navs.push({ link: '/admin', name: 'Admin', exact: false });
+
+    this.userService.userObserver.subscribe(user => {
+      this.user = user; 
+    }); 
+  }
+
+  alterarAdmin(): void {
+    this.userService.alterAdmin();
+  }
+
+  alterarLogged(): void {
+    this.userService.alterLogged();
   }
 
 }

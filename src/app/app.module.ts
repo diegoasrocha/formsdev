@@ -1,3 +1,4 @@
+import { UserService } from './services/user.service';
 import { CadastroGuard } from './services/cadastro.guard';
 import { AuthGuard } from './services/app.guard';
 import { SobreComponent } from './institucional/sobre/sobre.component';
@@ -28,7 +29,7 @@ import { NavegacaoModule } from './navegacao/navegacao.module';
     AppRoutingModule
   ],
   providers:[
-    AuthGuard, CadastroGuard
+    AuthGuard, CadastroGuard, UserService
   ], 
   bootstrap: [AppComponent]
 })

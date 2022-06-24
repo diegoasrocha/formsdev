@@ -10,7 +10,34 @@
       <ul class="navbar-nav ml-auto">
         <li class="nav-item" *ngFor="let nav of navs">
           <a class="nav-link" [routerLinkActiveOptions]="{ exact: nav.exact }" routerLinkActive="active"
-            [routerLink]="[nav.link]">{{nav.name}}</a>
+            [routerLink]="[nav.link]" data-toggle="collapse" data-target=".navbar-collapse.show">
+            {{nav.name}}
+          </a>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="false">
+            Usuário
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" href="javascript:void(0)" (click)="alterarAdmin()" data-toggle="collapse"
+              data-target=".navbar-collapse.show">
+              <div class="w-75 float-left">Admin </div>
+              <div class="w-25 ">
+                <i class="fa fa-toggle-on text-success" *ngIf="user.admin"></i>
+                <i class="fa fa-toggle-on text-muted" *ngIf="!user.admin"></i>
+              </div>
+
+            </a>
+            <a class="dropdown-item" href="javascript:void(0)" (click)="alterarLogged()" data-toggle="collapse"
+              data-target=".navbar-collapse.show">
+              <div class="w-75 float-left">Logado </div>
+              <div class="w-25 ">
+                <i class="fa fa-toggle-on text-success" *ngIf="user.logged"></i>
+                <i class="fa fa-toggle-on text-muted" *ngIf="!user.logged"></i>
+              </div>
+            </a>
+          </div>
         </li>
       </ul>
     </div>
