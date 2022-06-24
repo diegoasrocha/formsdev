@@ -13,7 +13,7 @@ import { fromEvent, merge, Observable } from "rxjs";
 export class CadastroComponent implements OnInit, AfterViewInit {
 
   @ViewChildren(FormControlName, { read: ElementRef })
-  formInputElements: ElementRef[];
+  formInputElements: ElementRef[]; 
 
   cadastroForm: FormGroup;
   usuario: Usuario;
@@ -61,7 +61,7 @@ export class CadastroComponent implements OnInit, AfterViewInit {
     merge(...controlBlurs).subscribe(() => {
       this.displayMessage = this.genericValidator.processarMessagens(this.cadastroForm);
       this.mudancasNaoSalvas = true;
-    });
+    });     
   }
 
   ngOnInit(): void {
@@ -88,6 +88,7 @@ export class CadastroComponent implements OnInit, AfterViewInit {
 
       // console.log("cadastroForm:", this.usuario);
       this.usuarioStr = JSON.stringify(this.usuario, undefined, 2);
+      this.limpar();
     } else {
       console.log("cadastroForm:", "Não submetido!");
     }
